@@ -1,0 +1,18 @@
+[
+  {
+    "model": "main.Script",
+    "pk": 1,
+    "fields": {
+      "context": " <pre>\n<code>\nx = 5;\ny = 6;\nz = x + y;\n</code>\n</pre> ",
+      "language": "HTML"
+    }
+  },
+  {
+   "model": "main.Script",
+    "pk": 2,
+    "fields": {
+      "context": "def fib(n):\na, b = 0, 1\nwhile a < n:\nprint(a, end=' ')\na, b = b, a+b\nprint()\nfib(1000),",
+      "language": "PYTHON"
+    }
+  }
+  ]
