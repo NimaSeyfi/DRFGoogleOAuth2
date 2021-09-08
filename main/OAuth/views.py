@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import AnonymousUser
 from main import models
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # @api_view(['POST'])
@@ -22,8 +23,10 @@ def oauth_callback_handler(request):
     access_key_serializer = serializers.AccessKeySerializer(data=access_token)
     access_key_serializer.is_valid()
     access_key_instance = access_key_serializer.save()
-    update_user_access_key(request, access_key_instance)
-    return redirect("http://127.0.0.1:8000")
+    user_instance = update_user_access_key(request, access_key_instance)
+    user_token = get_tokens_for_user(user_instance)
+    redirect("http://127.0.0.1:8000")
+    return Response(data=user_token)
 
 
 def update_user_access_key(request, access_key_instance):
@@ -39,11 +42,20 @@ def update_user_access_key(request, access_key_instance):
                 last_access_key.delete()
             user_instance.access_key = access_key_instance
             user_instance.save()
+            return user_instance
         else:
             pass
     else:
         pass
 
+
+def get_tokens_for_user(user):
+    refresh = RefreshToken.for_user(user)
+
+    return {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+    }
 
 def get_google_profile(access_token):
     data_url = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json"
