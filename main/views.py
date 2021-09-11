@@ -16,6 +16,6 @@ class GoogleAccountViewSet(viewsets.ModelViewSet):
 
 
 class ScriptViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, permissions.AllowAny]
     queryset = models.Script.objects.all()
     serializer_class = serializers.ScriptSerializer
