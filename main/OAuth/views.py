@@ -74,8 +74,8 @@ def get_google_profile(access_token):
 @api_view()
 def get_authorization_code(request):
     # if request.method == 'POST':
-    client_id = "718733559132-utomvqhli5k31kei2ocij8i2emoci9jl.apps.googleusercontent.com"
-    redirect_uri = "http://127.0.0.1:8000/oauth/ruri"
+    client_id = ""
+    redirect_uri = ""
     params = {
         "client_id": client_id,
         "response_type": "code",
