@@ -87,8 +87,8 @@ def get_authorization_code(request):
 
 
 def get_access_token(authorization_code):
-    client_id = "718733559132-utomvqhli5k31kei2ocij8i2emoci9jl.apps.googleusercontent.com"
-    client_secret = "vWzaDiW58ljhs_4Ve8XhY6FL"
+    client_id = ""
+    client_secret = ""
     redirect_uri = "http://127.0.0.1:8000/oauth/ruri"
     url = "https://oauth2.googleapis.com/token"
     params = {
